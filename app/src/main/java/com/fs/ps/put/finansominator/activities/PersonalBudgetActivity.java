@@ -23,6 +23,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personal_budget);
+        initPersonalBudgetsList();
 
     }
 
@@ -30,6 +31,7 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         personalBudgetList = (ListView)findViewById(R.id.personalBudgetsList);
         data = getPersonalBudgetsData();
         listAdapter = new PersonalBudgetAdapter(this,R.layout.personal_budget_row,data);
+        personalBudgetList.setAdapter(listAdapter);
 
     }
 

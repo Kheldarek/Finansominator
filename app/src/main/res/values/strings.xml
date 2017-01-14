@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Where's my money?</string>
+    <string name="app_name">"Where\'s my money?"</string>
+    <string name="title_activity_group_budget">GroupBudgetActivity</string>
 </resources>

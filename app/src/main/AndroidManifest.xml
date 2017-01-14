@@ -15,11 +15,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.PersonalBudgetActivity" />
-        <activity android:name=".activities.GroupBudgetActivity" />
-        <activity android:name=".activities.StatsActivity" />
-        <activity android:name=".activities.ReportsActivity" />
-        <activity android:name=".activities.TransactionsActivity" />
+        <activity
+            android:name=".activities.PersonalBudgetActivity"
+            android:label="Personal Budgets" />
+        <activity
+            android:name=".activities.GroupBudgetActivity"
+            android:label="Group Budgets" />
+        <activity
+            android:name=".activities.StatsActivity"
+            android:label="Statistics" />
+        <activity
+            android:name=".activities.ReportsActivity"
+            android:label="Reports" />
+        <activity
+            android:name=".activities.TransactionsActivity"
+            android:label="Transactions" />
         <activity android:name=".activities.BudgetViewActivity"></activity>
     </application>
 

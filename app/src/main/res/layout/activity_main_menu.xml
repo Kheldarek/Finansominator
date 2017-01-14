@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main_menu"
     android:layout_width="match_parent"
@@ -22,7 +21,7 @@
         android:layout_marginTop="20dp"
         android:layout_alignRight="@+id/reportsBtn"
         android:layout_alignEnd="@+id/reportsBtn"
-        android:onClick="goToTransactions (MainMenu)" />
+        android:onClick="goToTransactions" />
 
     <Button
         android:text="Group Budgets"
@@ -35,14 +34,14 @@
         android:layout_alignStart="@+id/personalBudgetsBtn"
         android:layout_alignRight="@+id/personalBudgetsBtn"
         android:layout_alignEnd="@+id/personalBudgetsBtn"
-        android:onClick="goToGroupBudget (MainMenu)" />
+        android:onClick="goToGroupBudget" />
 
     <Button
         android:text="Reports"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:id="@+id/reportsBtn"
-        android:onClick="goToReports (MainMenu)"
+        android:onClick="goToReports"
         android:layout_below="@+id/statisticsBtn"
         android:layout_alignLeft="@+id/statisticsBtn"
         android:layout_alignStart="@+id/statisticsBtn"
@@ -55,7 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
         android:id="@+id/statisticsBtn"
-        android:onClick="goToStats (MainMenu)"
+        android:onClick="goToStats"
         android:layout_below="@+id/groupBudgetsBtn"
         android:layout_alignLeft="@+id/groupBudgetsBtn"
         android:layout_alignStart="@+id/groupBudgetsBtn"
@@ -69,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="58dp"
         android:id="@+id/personalBudgetsBtn"
-        android:onClick="goToPersonalBudget (MainMenu)"
+        android:onClick="goToPersonalBudget"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 </RelativeLayout>

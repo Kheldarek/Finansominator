@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_personal_budget"
     android:orientation="vertical"
@@ -11,16 +11,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fs.ps.put.finansominator.activities.PersonalBudgetActivity">
 
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/personalBudgetsList"
+        android:layout_below="@+id/addPersonalBudgetsBtn" />
+
     <Button
         android:text="Add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/addPersonalBudgetsBtn"
-        android:elevation="0dp"
-        android:textAlignment="center" />
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/personalBudgetsList" />
-</LinearLayout>
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>

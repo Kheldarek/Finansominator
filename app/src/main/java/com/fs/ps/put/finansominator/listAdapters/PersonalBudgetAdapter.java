@@ -10,7 +10,6 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.fs.ps.put.finansominator.R;
-import com.fs.ps.put.finansominator.listAdapters.beans.GroupBudgetBean;
 import com.fs.ps.put.finansominator.listAdapters.beans.PersonalBudgetBean;
 
 import java.util.List;
@@ -53,8 +52,8 @@ public class PersonalBudgetAdapter extends ArrayAdapter<PersonalBudgetBean> {
         }
 
         PersonalBudgetBean object = objects.get(position);
-        rowHolder.name.setText(object.name);
-        rowHolder.balance.setText(object.balance);
+        rowHolder.name.setText(String.format("Name: %s", object.name));
+        rowHolder.balance.setText(String.format("Balance: %s", object.balance));
 
         return row;
 

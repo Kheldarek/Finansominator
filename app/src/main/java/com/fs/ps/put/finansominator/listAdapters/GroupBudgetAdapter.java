@@ -56,10 +56,10 @@ public class GroupBudgetAdapter extends ArrayAdapter<GroupBudgetBean>{
         }
 
         GroupBudgetBean object = objects.get(position);
-        rowHolder.name.setText(object.name);
-        rowHolder.owner.setText(object.owner);
-        rowHolder.members.setText(object.members);
-        rowHolder.balance.setText(object.balance);
+        rowHolder.name.setText(String.format("Name: %s", object.name));
+        rowHolder.owner.setText(String.format("Owner: %s", object.owner));
+        rowHolder.members.setText(String.format("Members: %s", object.members));
+        rowHolder.balance.setText(String.format("Balance: %s", object.balance));
 
         return row;
 
