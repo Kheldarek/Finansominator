@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_menu"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="com.fs.ps.put.finansominator.activities.MainMenu">
+
+    <Button
+        android:text="Transactions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/transactionsBtn"
+        android:layout_below="@+id/reportsBtn"
+        android:layout_alignLeft="@+id/reportsBtn"
+        android:layout_alignStart="@+id/reportsBtn"
+        android:layout_marginTop="20dp"
+        android:layout_alignRight="@+id/reportsBtn"
+        android:layout_alignEnd="@+id/reportsBtn"
+        android:onClick="goToTransactions (MainMenu)" />
+
+    <Button
+        android:text="Group Budgets"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:id="@+id/groupBudgetsBtn"
+        android:layout_below="@+id/personalBudgetsBtn"
+        android:layout_alignLeft="@+id/personalBudgetsBtn"
+        android:layout_alignStart="@+id/personalBudgetsBtn"
+        android:layout_alignRight="@+id/personalBudgetsBtn"
+        android:layout_alignEnd="@+id/personalBudgetsBtn"
+        android:onClick="goToGroupBudget (MainMenu)" />
+
+    <Button
+        android:text="Reports"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:id="@+id/reportsBtn"
+        android:onClick="goToReports (MainMenu)"
+        android:layout_below="@+id/statisticsBtn"
+        android:layout_alignLeft="@+id/statisticsBtn"
+        android:layout_alignStart="@+id/statisticsBtn"
+        android:layout_alignRight="@+id/statisticsBtn"
+        android:layout_alignEnd="@+id/statisticsBtn"
+        android:layout_width="match_parent" />
+
+    <Button
+        android:text="Statistics"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="17dp"
+        android:id="@+id/statisticsBtn"
+        android:onClick="goToStats (MainMenu)"
+        android:layout_below="@+id/groupBudgetsBtn"
+        android:layout_alignLeft="@+id/groupBudgetsBtn"
+        android:layout_alignStart="@+id/groupBudgetsBtn"
+        android:layout_alignRight="@+id/groupBudgetsBtn"
+        android:layout_alignEnd="@+id/groupBudgetsBtn"
+        android:layout_width="match_parent" />
+
+    <Button
+        android:text="Personal Budgets"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="58dp"
+        android:id="@+id/personalBudgetsBtn"
+        android:onClick="goToPersonalBudget (MainMenu)"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+</RelativeLayout>
