@@ -1,7 +1,9 @@
 package com.fs.ps.put.finansominator.activities;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -39,5 +41,10 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         return new ArrayList<>();
     }
 
+    public void addNewBudget(View view)
+    {
+        AddPersonalBudgetDialog dialog = new AddPersonalBudgetDialog();
+        dialog.show(getSupportFragmentManager(), "AddPersonalBudgetFragment");
+    }
 
 }

@@ -30,7 +30,8 @@
         <activity
             android:name=".activities.TransactionsActivity"
             android:label="Transactions" />
-        <activity android:name=".activities.BudgetViewActivity"></activity>
+        <activity android:name=".activities.BudgetViewActivity" />
+        <activity android:name=".activities.PersonalBudgetAdder"></activity>
     </application>
 
 </manifest>

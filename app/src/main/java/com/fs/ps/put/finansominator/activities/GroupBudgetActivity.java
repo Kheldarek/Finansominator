@@ -2,6 +2,7 @@ package com.fs.ps.put.finansominator.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,23 +27,25 @@ public class GroupBudgetActivity extends AppCompatActivity {
         initGroupBudgetList();
     }
 
-    private void initGroupBudgetList()
-    {
-        groupBudgetList = (ListView)findViewById(R.id.groupBudgetsList);
-        data=getGroupBudgets();
+    private void initGroupBudgetList() {
+        groupBudgetList = (ListView) findViewById(R.id.groupBudgetsList);
+        data = getGroupBudgets();
         fill(data);
-        listAdapter = new GroupBudgetAdapter(this, R.layout.group_budget_row,data);
+        listAdapter = new GroupBudgetAdapter(this, R.layout.group_budget_row, data);
         groupBudgetList.setAdapter(listAdapter);
 
     }
 
-    List<GroupBudgetBean> getGroupBudgets()
-    {
+    List<GroupBudgetBean> getGroupBudgets() {
         return new ArrayList<>();
     }
 
-    void fill(List<GroupBudgetBean> data){
-        data.add(new GroupBudgetBean("pierwszy","andrzej","sliwka,chudy","+75.48"));
+    void fill(List<GroupBudgetBean> data) {
+        data.add(new GroupBudgetBean("pierwszy", "andrzej", "sliwka,chudy", "+75.48"));
+    }
+
+    void addNewBudgetEvent(View view) {
+
     }
 
 }
