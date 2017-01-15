@@ -7,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.fs.ps.put.finansominator.R;
+import com.fs.ps.put.finansominator.dialogs.AddGroupBudgetDialog;
 import com.fs.ps.put.finansominator.listAdapters.GroupBudgetAdapter;
 import com.fs.ps.put.finansominator.listAdapters.beans.GroupBudgetBean;
 

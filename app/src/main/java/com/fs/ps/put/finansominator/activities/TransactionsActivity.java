@@ -7,11 +7,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.fs.ps.put.finansominator.R;
+import com.fs.ps.put.finansominator.dialogs.AddTransactionDialog;
 import com.fs.ps.put.finansominator.listAdapters.TransactionListAdapter;
 import com.fs.ps.put.finansominator.listAdapters.beans.TransactionBean;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class TransactionsActivity extends AppCompatActivity {
 

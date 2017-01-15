@@ -1,6 +1,5 @@
 package com.fs.ps.put.finansominator.activities;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.fs.ps.put.finansominator.R;
+import com.fs.ps.put.finansominator.dialogs.AddPersonalBudgetDialog;
 import com.fs.ps.put.finansominator.listAdapters.PersonalBudgetAdapter;
 import com.fs.ps.put.finansominator.listAdapters.beans.PersonalBudgetBean;
 
