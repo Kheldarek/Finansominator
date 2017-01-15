@@ -44,8 +44,9 @@ public class GroupBudgetActivity extends AppCompatActivity {
         data.add(new GroupBudgetBean("pierwszy", "andrzej", "sliwka,chudy", "+75.48"));
     }
 
-    void addNewBudgetEvent(View view) {
-
+   public void addNewBudgetEvent(View view) {
+        AddGroupBudgetDialog dialog = new AddGroupBudgetDialog();
+        dialog.show(getFragmentManager(),"AddGroupBudgetDialog");
     }
 
 }
