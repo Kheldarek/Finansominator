@@ -16,7 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/addTransactionButton" />
+        android:id="@+id/addTransactionButton"
+        android:onClick="addTransaction" />
 
     <ListView
         android:layout_width="match_parent"

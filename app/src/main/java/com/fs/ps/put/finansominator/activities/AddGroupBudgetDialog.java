@@ -18,7 +18,7 @@ public class AddGroupBudgetDialog extends DialogFragment {
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        builder.setTitle("Add new budget").
+        builder.setTitle("Add new group budget").
                 setView(inflater.inflate(R.layout.add_group_budget_dialog, null))
                 // Add action buttons
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {

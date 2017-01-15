@@ -2,6 +2,7 @@ package com.fs.ps.put.finansominator.activities;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -41,6 +42,11 @@ public class TransactionsActivity extends AppCompatActivity {
         data[0] =(new TransactionBean("pierwszy", "75","Wczoraj","pierdoly"));
         data[1] = (new TransactionBean("drugi", "500","jutro","choleraWie"));
         data[2] = (new TransactionBean("trzeci", "75","15-12-2016","żarcie"));
+    }
+
+    public void addTransaction(View view){
+        AddTransactionDialog dialog = new AddTransactionDialog();
+        dialog.show(getFragmentManager(),"AddTransactionDialog");
     }
 
 }
