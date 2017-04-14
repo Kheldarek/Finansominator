@@ -13,7 +13,7 @@
         android:layout_marginBottom="4dp"
         android:hint="Name" />
     <EditText
-        android:id="@+id/personalBudgetOwnerName"
+        android:id="@+id/personalBudgetDialogOwnerName"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:fontFamily="sans-serif"
         android:hint="Owner"/>
     <EditText
-        android:id="@+id/personalBudgetCategoriesTxt"
+        android:id="@+id/personalBudgetDialogCategoriesTxt"
         android:inputType="text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

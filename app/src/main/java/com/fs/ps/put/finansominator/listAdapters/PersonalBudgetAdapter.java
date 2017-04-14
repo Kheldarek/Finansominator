@@ -43,8 +43,8 @@ public class PersonalBudgetAdapter extends ArrayAdapter<PersonalBudgetBean> {
             row = inflater.inflate(resource,parent,false);
 
             rowHolder = new RowHolder();
-            rowHolder.name = (TextView)row.findViewById(R.id.groupBudgetNameTxt);
-            rowHolder.balance = (TextView)row.findViewById(R.id.groupBudgetBalanceTxt);
+            rowHolder.name = (TextView)row.findViewById(R.id.personalBudgetNameTxt);
+            rowHolder.balance = (TextView)row.findViewById(R.id.personalBudgetBalanceTxt);
             row.setTag(rowHolder);
         }
         else{

@@ -1,29 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_personal_budget"
-    android:orientation="vertical"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/activity_personal_budget"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+                tools:context="com.fs.ps.put.finansominator.activities.PersonalBudgetActivity">
+<RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.fs.ps.put.finansominator.activities.PersonalBudgetActivity">
-
+    android:id="@+id/relativePersonal">
     <ListView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/personalBudgetsList"
-        android:layout_below="@+id/addPersonalBudgetsBtn" />
+        />
+</RelativeLayout>
 
-    <Button
-        android:text="Add"
+
+    <android.support.design.widget.FloatingActionButton
+        android:layout_margin="10dp"
+        android:id="@+id/myFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/addPersonalBudgetsBtn"
+        app:backgroundTint="#304ffe"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        app:layout_anchor="@id/relativePersonal"
+        app:layout_anchorGravity="bottom|right|end"
         android:onClick="addNewBudget"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-</RelativeLayout>
+        android:src="@android:drawable/ic_input_add"/>
+
+</android.support.design.widget.CoordinatorLayout>

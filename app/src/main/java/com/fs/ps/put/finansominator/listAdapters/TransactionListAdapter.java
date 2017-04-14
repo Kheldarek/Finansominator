@@ -23,9 +23,9 @@ public class TransactionListAdapter extends ArrayAdapter<TransactionBean> {
 
     Context context;
     int resource;
-    TransactionBean objects[];
+    List<TransactionBean> objects;
 
-    public TransactionListAdapter(Context context, int resource, TransactionBean objects[]) {
+    public TransactionListAdapter(Context context, int resource, List<TransactionBean> objects) {
         super(context, resource, objects);
 
         this.context = context;
@@ -54,7 +54,7 @@ public class TransactionListAdapter extends ArrayAdapter<TransactionBean> {
             rowHolder = (RowHolder) row.getTag();
         }
 
-        TransactionBean object = objects[position];
+        TransactionBean object = objects.get(position);
         rowHolder.budget.setText(String.format("Budget: %s", object.budget));
         rowHolder.amount.setText(String.format("Amount: %s" ,object.amount));
         rowHolder.date.setText(String.format("Date: %s" ,object.date));

@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fs.ps.put.finansominator">
+          package="com.fs.ps.put.finansominator">
+
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
 
     <application
         android:allowBackup="true"
@@ -10,28 +15,31 @@
         android:theme="@style/AppTheme">
         <activity android:name=".activities.MainMenu">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity
             android:name=".activities.PersonalBudgetActivity"
-            android:label="Personal Budgets" />
+            android:label="Personal Budgets"/>
         <activity
             android:name=".activities.GroupBudgetActivity"
-            android:label="Group Budgets" />
+            android:label="Group Budgets"/>
         <activity
             android:name=".activities.StatsActivity"
-            android:label="Statistics" />
+            android:label="Statistics"/>
         <activity
             android:name=".activities.ReportsActivity"
-            android:label="Reports" />
+            android:label="Reports"/>
         <activity
             android:name=".activities.TransactionsActivity"
-            android:label="Transactions" />
-        <activity android:name=".activities.BudgetViewActivity" />
-        <activity android:name=".activities.PersonalBudgetAdder"></activity>
+            android:label="Transactions"/>
+        <activity android:name=".activities.BudgetViewActivity"/>
+        <activity
+            android:name=".LoginActivity"
+            android:label="@string/title_activity_login">
+        </activity>
     </application>
 
 </manifest>

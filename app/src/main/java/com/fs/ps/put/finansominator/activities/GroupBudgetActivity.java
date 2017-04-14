@@ -43,6 +43,8 @@ public class GroupBudgetActivity extends AppCompatActivity {
 
     void fill(List<GroupBudgetBean> data) {
         data.add(new GroupBudgetBean("pierwszy", "andrzej", "sliwka,chudy", "+75.48"));
+        data.add(new GroupBudgetBean("drugi", "janusz", "andrzej,sliwka,chudy", "-175.48"));
+
     }
 
    public void addNewBudgetEvent(View view) {

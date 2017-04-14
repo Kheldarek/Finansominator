@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_transactions"
     android:layout_width="match_parent"
@@ -10,21 +12,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fs.ps.put.finansominator.activities.TransactionsActivity">
 
-    <Button
-        android:text="Add"
+    <RelativeLayout
+        android:id="@+id/relativeTransactions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ListView
+            android:id="@+id/transactionListView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/myFAB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/addTransactionButton"
-        android:onClick="addTransaction" />
+        android:layout_margin="10dp"
+        android:onClick="addTransaction"
+        android:src="@android:drawable/ic_input_add"
+        app:backgroundTint="#304ffe"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        app:layout_anchor="@id/relativeTransactions"
+        app:layout_anchorGravity="bottom|right|end"/>
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="34dp"
-        android:id="@+id/transactionListView"
-        android:layout_below="@+id/addTransactionButton"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>
