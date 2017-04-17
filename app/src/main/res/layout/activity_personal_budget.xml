@@ -34,6 +34,18 @@
         app:layout_anchor="@id/relativePersonal"
         app:layout_anchorGravity="bottom|right|end"
         android:onClick="addNewBudget"
-        android:src="@android:drawable/ic_input_add"/>
+        />
+
+    <TextView
+        android:id="@+id/FABtext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="12sp"
+        android:text="@string/fa_icon_plus"
+        android:textColor="#64dd17"
+        android:textSize="24sp"
+        app:layout_anchor="@id/myFAB"
+        app:layout_anchorGravity="center"/>
+
 
 </android.support.design.widget.CoordinatorLayout>

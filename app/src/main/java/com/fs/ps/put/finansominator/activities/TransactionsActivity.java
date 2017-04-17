@@ -2,6 +2,7 @@ package com.fs.ps.put.finansominator.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -14,10 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.fs.ps.put.finansominator.R;
-import com.fs.ps.put.finansominator.dialogs.AddTransactionDialog;
 import com.fs.ps.put.finansominator.listAdapters.TransactionListAdapter;
-import com.fs.ps.put.finansominator.listAdapters.beans.PersonalBudgetBean;
 import com.fs.ps.put.finansominator.listAdapters.beans.TransactionBean;
+import com.fs.ps.put.finansominator.utils.FontManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +33,9 @@ public class TransactionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transactions);
         initTransactionList();
+        TextView fabText = (TextView) findViewById(R.id.FABTransactionText);
+        Typeface typeface= FontManager.getTypeface(getApplicationContext(),FontManager.FONTAWESOME);
+        fabText.setTypeface(typeface);
     }
 
     void initTransactionList(){

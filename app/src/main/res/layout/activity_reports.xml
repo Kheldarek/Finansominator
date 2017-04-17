@@ -1,13 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_reports"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.fs.ps.put.finansominator.activities.ReportsActivity">
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 xmlns:tools="http://schemas.android.com/tools"
+                                                 android:id="@+id/activity_reports"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent"
+                                                 android:paddingBottom="@dimen/activity_vertical_margin"
+                                                 android:paddingLeft="@dimen/activity_horizontal_margin"
+                                                 android:paddingRight="@dimen/activity_horizontal_margin"
+                                                 android:paddingTop="@dimen/activity_vertical_margin"
+                                                 tools:context="com.fs.ps.put.finansominator.activities.ReportsActivity">
 
-</RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/pieChartFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/pieChart"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </com.github.mikephil.charting.charts.PieChart>
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/editChartFAB"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:onClick="editChart"
+        app:backgroundTint="#304ffe"
+        app:borderWidth="0dp"
+        app:elevation="8dp"
+        app:layout_anchor="@id/pieChartFrame"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+    <TextView
+        android:id="@+id/editChartFABText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="12sp"
+        android:text="@string/fa_icon_pencil"
+        android:textColor="#64dd17"
+        android:textSize="24sp"
+        app:layout_anchor="@id/editChartFAB"
+        app:layout_anchorGravity="center"/>
+
+
+</android.support.design.widget.CoordinatorLayout>

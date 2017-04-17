@@ -24,9 +24,6 @@
             android:name=".activities.PersonalBudgetActivity"
             android:label="Personal Budgets"/>
         <activity
-            android:name=".activities.GroupBudgetActivity"
-            android:label="Group Budgets"/>
-        <activity
             android:name=".activities.StatsActivity"
             android:label="Statistics"/>
         <activity

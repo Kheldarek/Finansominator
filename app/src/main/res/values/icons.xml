@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fa_icon_piechart">&#xf200;</string>
+    <string name="fa_icon_user">&#xf007;</string>
+    <string name="fa_icon_money">&#xf0d6;</string>
+    <string name="fa_icon_sign_out">&#xf08b;</string>
+    <string name="fa_icon_sign_in">&#xf090;</string>
+    <string name="fa_icon_pencil">&#xf040;</string>
+    <string name="fa_icon_trash">&#xf1f8;</string>
+    <string name="fa_icon_plus">&#xf067;</string>
+    <string name="fa_icon_refresh">&#xf021;</string>
+    <string name="fa_icon_transactions">&#xf022;</string>
+</resources>
