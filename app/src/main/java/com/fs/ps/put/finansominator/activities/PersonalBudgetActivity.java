@@ -2,6 +2,7 @@ package com.fs.ps.put.finansominator.activities;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -47,6 +49,16 @@ public class PersonalBudgetActivity extends AppCompatActivity {
         fill(data);
         listAdapter = new PersonalBudgetAdapter(this, R.layout.personal_budget_row, data);
         personalBudgetList.setAdapter(listAdapter);
+        personalBudgetList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?>adapter,View v, int position,long i){
+                PersonalBudgetBean item = (PersonalBudgetBean) adapter.getItemAtPosition(position);
+
+                Intent intent = new Intent(getApplicationContext(),BudgetViewActivity.class);
+                //based on item add info to intent
+                startActivity(intent);
+            }
+        });;
 
     }
 

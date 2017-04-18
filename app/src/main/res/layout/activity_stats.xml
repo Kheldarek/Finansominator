@@ -9,5 +9,79 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.fs.ps.put.finansominator.activities.StatsActivity">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:text="Current login: "
+        android:id="@+id/userLoginLabel"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/userNewLoginTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userLoginLabel"
+        android:layout_centerHorizontal="true"
+        android:hint="Change this to set new login"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/userEmailLabel"
+        android:layout_below="@id/userNewLoginTxt"
+        android:layout_centerHorizontal="true"
+        android:text="Current email: "
+        android:textSize="20sp"
+        />
+
+         <EditText
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_below="@+id/userEmailLabel"
+         android:layout_centerHorizontal="true"
+         android:hint="Change this to change email"
+         android:layout_marginTop="10dp"
+         android:layout_marginBottom="10dp"
+         android:id="@+id/userEmailEditText"
+         android:inputType="textEmailAddress"
+         android:textSize="20sp"
+         />
+
+     <TextView
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Change password:"
+         android:layout_below="@id/userEmailEditText"
+         android:layout_centerHorizontal="true"
+         android:id="@+id/userChangePasswordLabel"
+         android:textSize="20sp"
+         />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Old password"
+        android:inputType="textPassword"
+        android:layout_below="@id/userChangePasswordLabel"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/userOldPasswordEditText"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Old password"
+        android:inputType="textPassword"
+        android:layout_below="@id/userOldPasswordEditText"
+        android:layout_centerHorizontal="true"
+        />
+
 
 </RelativeLayout>

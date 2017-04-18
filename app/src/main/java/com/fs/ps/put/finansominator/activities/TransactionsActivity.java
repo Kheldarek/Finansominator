@@ -36,6 +36,7 @@ public class TransactionsActivity extends AppCompatActivity {
         TextView fabText = (TextView) findViewById(R.id.FABTransactionText);
         Typeface typeface= FontManager.getTypeface(getApplicationContext(),FontManager.FONTAWESOME);
         fabText.setTypeface(typeface);
+        getIntent().getStringExtra("Name");
     }
 
     void initTransactionList(){

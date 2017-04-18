@@ -64,4 +64,8 @@ public class PersonalBudgetAdapter extends ArrayAdapter<PersonalBudgetBean> {
         TextView name;
         TextView balance;
     }
+
+    public PersonalBudgetBean getItem(int position){
+        return objects.get(position);
+    }
 }

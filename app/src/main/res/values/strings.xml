@@ -18,4 +18,5 @@
         completions."
     </string>
     <string name="title_activity_main">MainActivity</string>
+    <string name="budgetBalance">Balance</string>
 </resources>
