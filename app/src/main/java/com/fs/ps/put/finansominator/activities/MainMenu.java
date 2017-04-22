@@ -3,11 +3,9 @@ package com.fs.ps.put.finansominator.activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.constraint.solver.SolverVariable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.fs.ps.put.finansominator.R;
 import com.fs.ps.put.finansominator.utils.FontManager;
@@ -32,7 +30,7 @@ public class MainMenu extends AppCompatActivity {
 
    public void goToPersonalBudget(View view)
     {
-        Intent intent = new Intent(this,PersonalBudgetActivity.class);
+        Intent intent = new Intent(this,BudgetActivity.class);
         startActivity(intent);
     }
 
@@ -50,7 +48,7 @@ public class MainMenu extends AppCompatActivity {
 
    public void goToStats(View view)
     {
-        Intent intent = new Intent(this,StatsActivity.class);
+        Intent intent = new Intent(this,UserActivity.class);
         startActivity(intent);
     }
 

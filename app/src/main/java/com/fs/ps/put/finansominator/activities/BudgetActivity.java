@@ -25,7 +25,7 @@ import org.w3c.dom.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonalBudgetActivity extends AppCompatActivity {
+public class BudgetActivity extends AppCompatActivity {
 
 
     ListView personalBudgetList;
