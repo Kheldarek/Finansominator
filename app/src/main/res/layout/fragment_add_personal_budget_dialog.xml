@@ -12,26 +12,4 @@
         android:layout_marginRight="4dp"
         android:layout_marginBottom="4dp"
         android:hint="Name" />
-    <EditText
-        android:id="@+id/personalBudgetDialogOwnerName"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
-        android:hint="Owner"/>
-    <EditText
-        android:id="@+id/personalBudgetDialogCategoriesTxt"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
-        android:hint="Categories"/>
 </LinearLayout>

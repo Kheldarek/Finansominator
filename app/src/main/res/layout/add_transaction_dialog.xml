@@ -1,47 +1,48 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-    <EditText
-        android:id="@+id/transactionBudgetDialogTxt"
-        android:inputType="text"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Budget" />
-    <EditText
-        android:id="@+id/transactionAmountDialogTxt"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:fontFamily="sans-serif"
-        android:hint="Amount"/>
-    <EditText
-        android:id="@+id/transactionDateDialogTxt"
-        android:inputType="text|date"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="4dp"
-        android:hint="Date" />
-    <EditText
-        android:id="@+id/transactionCategoryDialogTxt"
-        android:inputType="text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="sans-serif"
-        android:hint="Category"/>
-</LinearLayout>
+        android:orientation="vertical">
+        <View android:layout_width="fill_parent" android:id="@+id/focus_view" android:layout_height="0dp" android:focusable="true" android:focusableInTouchMode="true"><requestFocus/></View>
+
+            <DatePicker
+            android:id="@+id/transactionDateDialogTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:hint="Date"
+            android:inputType="date"/>
+
+        <Spinner
+            android:id="@+id/chooseCategorySpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <Spinner
+            android:id="@+id/chooseTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <EditText
+            android:id="@+id/transactionAmountDialogTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:hint="Amount"
+            android:inputType="number"/>
+
+
+    </LinearLayout>
+</ScrollView>

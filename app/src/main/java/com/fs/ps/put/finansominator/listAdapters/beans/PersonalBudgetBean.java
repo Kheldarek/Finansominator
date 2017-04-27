@@ -6,12 +6,12 @@ package com.fs.ps.put.finansominator.listAdapters.beans;
 
 public class PersonalBudgetBean {
     public String name;
-    public String balance;
+    public long id;
 
     public PersonalBudgetBean(){}
-    public PersonalBudgetBean(String name, String balance){
+    public PersonalBudgetBean(String name, long id){
         this.name = name;
-        this.balance = balance;
+        this.id = id;
     }
 
 }

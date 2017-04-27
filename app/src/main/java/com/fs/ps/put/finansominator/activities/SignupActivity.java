@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.fs.ps.put.finansominator.R;
 import com.fs.ps.put.finansominator.communication.ResponseCodes;
 import com.fs.ps.put.finansominator.communication.ServerCommunicator;
+import com.fs.ps.put.finansominator.security.crypto.CryptoUtils;
 import com.google.gson.Gson;
 
 import java.io.UnsupportedEncodingException;
@@ -27,6 +28,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
@@ -161,6 +165,8 @@ public class SignupActivity extends AppCompatActivity {
         byte[] salt;
         Gson gson;
         ProgressDialog progressDialog;
+        SecretKey aesKey;
+        IvParameterSpec iv;
 
         public Context context;
 
@@ -171,6 +177,9 @@ public class SignupActivity extends AppCompatActivity {
             gson = new Gson();
             context = con;
             this.progressDialog = progressDialog;
+            aesKey = CryptoUtils.generateAESKey();
+            iv = new IvParameterSpec(SecureRandom.getSeed(16));
+
 
             try {
                 messageDigest = MessageDigest.getInstance("SHA-256");
@@ -193,14 +202,16 @@ public class SignupActivity extends AppCompatActivity {
             try {
                 byte[] digestedPassword = generateDigest(password, salt);
                 Map<String, Object> parameters = new HashMap<>();
-                parameters.put("username", username);
-                parameters.put("email", email);
-                parameters.put("password", gson.toJson(digestedPassword));
-                parameters.put("salt", gson.toJson(salt));
+                parameters.put("username", CryptoUtils.encryptParameter(username,aesKey,iv));
+                parameters.put("email", CryptoUtils.encryptParameter(email,aesKey,iv));
+                parameters.put("password", CryptoUtils.encryptParameter(gson.toJson(digestedPassword),aesKey,iv));
+                parameters.put("salt", CryptoUtils.encryptParameter(gson.toJson(salt),aesKey,iv));
+                parameters.put("cipherKey", CryptoUtils.encryptKey(aesKey));
+                parameters.put("iv", CryptoUtils.encryptIv(iv));
 
                 String response = ServerCommunicator.sendAndWaitForResponse(API_URL, parameters);
+                response = CryptoUtils.decryptStringParameter(response,aesKey,iv);;
                 return response;
-
 
             } catch (Exception e) {
                 Log.e("ERROR", e.getMessage(), e);
@@ -213,16 +224,16 @@ public class SignupActivity extends AppCompatActivity {
             if (response == null) {
                 Toast.makeText(context, NO_CONNECTION, Toast.LENGTH_LONG).show();
                 signupSuccessful = false;
-            }
+            }else
 
             if (response.equals(ResponseCodes.EMAIL_ALREADY_IN_USE.toString())) {
                 Toast.makeText(context, "Email is already in use", Toast.LENGTH_LONG).show();
                 signupSuccessful = false;
-            }
+            }else
             if (response.equals(ResponseCodes.LOGIN_ALREADY_IN_USE.toString())) {
                 Toast.makeText(context, "Email is already in use", Toast.LENGTH_LONG).show();
                 signupSuccessful = false;
-            }
+            }else
             if (response.equals(ResponseCodes.REGISTERED.toString())) {
                 Toast.makeText(context, "Registration succesfull", Toast.LENGTH_LONG).show();
 

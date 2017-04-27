@@ -1,3 +1,4 @@
+package com.fs.ps.put.finansominator.security.crypto;
 
 import android.Manifest;
 import android.app.Activity;
@@ -8,14 +9,19 @@ import android.support.v4.app.ActivityCompat;
 import android.util.Base64;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.security.Key;
 import java.security.PrivateKey;
 import java.security.PublicKey;
+import java.security.interfaces.RSAPublicKey;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
 
 /**
  * Created by Kheldar on 13-Dec-16.
@@ -23,80 +29,31 @@ import javax.crypto.SecretKey;
 
 public class CryptoUtils {
 
-    private static String[] PERMISSIONS_STORAGE = {
-            Manifest.permission.READ_EXTERNAL_STORAGE,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-    };
+    public static final String AES_MODE = "AES/CBC/PKCS5Padding";
+    public static final String AES = "AES";
+    public static final String RSA = "RSA/ECB/PKCS1Padding";
+    private static final String CHARSET = "UTF-8";
 
-    public static void getStoragePermission(Context context, Activity activity)
-    {
-        int permission = ActivityCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE);
+    public static PublicKey publicKey;
 
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,1
-
-            );
-        }
-    }
-
-    public static SecretKey generateAESKey(){
+    public static SecretKey generateAESKey() {
         try {
-            KeyGenerator keygen = KeyGenerator.getInstance("AES");
+            KeyGenerator keygen = KeyGenerator.getInstance(AES);
             SecretKey aesKey = keygen.generateKey();
             return aesKey;
-        }catch (Exception e){return null;}
-    }
-
-
-
-    public static SecretKey deserializeKey() {
-
-
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(Environment.getExternalStorageDirectory().getPath() + "/keys/aeaKey.key"));
-            return (SecretKey) inputStream.readObject();
         } catch (Exception e) {
-            Log.e("KEY", "NO KEY FILE");
-            Log.e("ExMsg", e.getMessage());
-            return null;
-        }
-    }
-    public static PublicKey deserializePublicKey() {
-
-
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(Environment.getExternalStorageDirectory().getPath() + "/keys/pub.key"));
-            return (PublicKey) inputStream.readObject();
-        } catch (Exception e) {
-            Log.e("KEY", "NO KEY FILE");
-            Log.e("ExMsg", e.getMessage());
-            return null;
-        }
-    }
-    public static PrivateKey deserializePrivateKey() {
-
-
-        try {
-            ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(Environment.getExternalStorageDirectory().getPath() + "/keys/priv.key"));
-            return (PrivateKey) inputStream.readObject();
-        } catch (Exception e) {
-            Log.e("KEY", "NO KEY FILE");
-            Log.e("ExMsg", e.getMessage());
             return null;
         }
     }
 
-    public static String AesEncrypt(SecretKey key, String data) {
-        String encrypted = "";
+
+    public static byte[] AesEncrypt(SecretKey key, IvParameterSpec iv, byte[] data) {
+        byte[] encrypted = null;
         try {
-            Cipher aesCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
-            aesCipher.init(Cipher.ENCRYPT_MODE, key);
-            byte[] clearTextBuff = data.getBytes();
-            byte[] cipherTextBuff = aesCipher.doFinal(clearTextBuff);
-            encrypted = Base64.encodeToString(cipherTextBuff, Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_CLOSE | Base64.NO_WRAP);
+            Cipher aesCipher = Cipher.getInstance(AES_MODE);
+            aesCipher.init(Cipher.ENCRYPT_MODE, key, iv);
+            byte[] cipherTextBuff = aesCipher.doFinal(data);
+            encrypted = cipherTextBuff;
         } catch (Exception e) {
             Log.e("ENCERR", e.getMessage());
         }
@@ -105,15 +62,15 @@ public class CryptoUtils {
 
     }
 
-    public static String AesDecrypt(SecretKey key, String data) {
+    public static byte[] AesDecrypt(SecretKey key, IvParameterSpec iv, byte[] data) {
 
-        String decrypted = "";
+        byte[] decrypted = null;
         try {
-            Cipher aesCipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
+            Cipher aesCipher = Cipher.getInstance(AES_MODE);
 
-            aesCipher.init(Cipher.DECRYPT_MODE, key);
-            byte[] decipheredBuff = aesCipher.doFinal(Base64.decode(data, Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_CLOSE | Base64.NO_WRAP));
-            decrypted = new String(decipheredBuff);
+            aesCipher.init(Cipher.DECRYPT_MODE, key, iv);
+            byte[] decipheredBuff = aesCipher.doFinal(data);
+            decrypted = decipheredBuff;
         } catch (Exception e) {
             Log.e("ENCERR", e.getMessage());
         }
@@ -121,32 +78,76 @@ public class CryptoUtils {
 
     }
 
-    public static String RSAEncrypt(String text, PublicKey key) {
+    public static byte[] RSAEncrypt(byte[] data, PublicKey key) {
         try {
 
-            String cipherText = null;
-            final Cipher cipher = Cipher.getInstance("RSA");
+            byte[] cipherText = null;
+            final Cipher cipher = Cipher.getInstance(RSA);
             cipher.init(Cipher.ENCRYPT_MODE, key);
-            cipher.update(text.getBytes());
-            cipherText = Base64.encodeToString(cipher.doFinal(),Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_CLOSE | Base64.NO_WRAP);
-
+            cipher.update(data);
+            cipherText = cipher.doFinal();
             return cipherText;
-        }catch (Exception e){return null;}
+        } catch (Exception e) {
+            return null;
+        }
     }
 
-    public static String RSADecrypt(String text, PrivateKey key)  {
+    public static byte[] RSADecrypt(byte[] data, PrivateKey key) {
 
         try {
             byte[] dectyptedText = null;
 
-            final Cipher cipher = Cipher.getInstance("RSA");
+            final Cipher cipher = Cipher.getInstance(RSA);
 
             cipher.init(Cipher.DECRYPT_MODE, key);
-            cipher.update(Base64.decode(text, Base64.URL_SAFE | Base64.NO_PADDING | Base64.NO_CLOSE | Base64.NO_WRAP));
+            cipher.update(data);
             dectyptedText = cipher.doFinal();
-            return new String(dectyptedText);
-        }catch (Exception e){return null ;}
+            return dectyptedText;
+        } catch (Exception e) {
+            return null;
+        }
 
+    }
+
+    public static String encryptParameter(String string, SecretKey key, IvParameterSpec iv) {
+        try {
+            Gson gson = new Gson();
+            return gson.toJson(AesEncrypt(key, iv, string.getBytes(CHARSET)));
+        } catch (Exception e) {
+            return null;
+        }
+
+    }
+
+    public static String encryptParameter(byte[] byteArray, SecretKey key, IvParameterSpec iv) {
+        Gson gson = new Gson();
+        return  gson.toJson(AesEncrypt(key, iv, byteArray));
+
+    }
+
+    public static String encryptKey(SecretKey key) {
+        Gson gson = new Gson();
+        return gson.toJson(RSAEncrypt(key.getEncoded(),publicKey));
+    }
+
+    public static String encryptIv(IvParameterSpec iv){
+        Gson gson = new Gson();
+        return gson.toJson(RSAEncrypt(iv.getIV(),publicKey));
+
+    }
+
+    public static String decryptStringParameter(String string, SecretKey aesKey, IvParameterSpec ivParameter){
+        Gson gson = new Gson();
+        try {
+            return new String(AesDecrypt(aesKey, ivParameter, gson.fromJson(string, byte[].class)), CHARSET);
+        }catch (Exception e){
+            return "";
+        }
+    }
+
+    public static byte[] decryptByteArrayParameter(String byteArray, SecretKey aesKey, IvParameterSpec ivParameter){
+        Gson gson = new Gson();
+        return AesDecrypt(aesKey, ivParameter, gson.fromJson(byteArray, byte[].class));
     }
 
 }

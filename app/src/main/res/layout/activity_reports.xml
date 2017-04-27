@@ -15,9 +15,14 @@
         android:id="@+id/pieChartFrame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/choseChartModeSpinner"/>
 
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/pieChart"
+            android:layout_below="@id/choseChartModeSpinner"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 

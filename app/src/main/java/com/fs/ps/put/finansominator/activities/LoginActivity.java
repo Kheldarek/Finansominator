@@ -17,18 +17,30 @@ import android.widget.Toast;
 import com.fs.ps.put.finansominator.R;
 import com.fs.ps.put.finansominator.communication.ServerCommunicator;
 import com.fs.ps.put.finansominator.model.User;
+import com.fs.ps.put.finansominator.security.crypto.CryptoUtils;
 import com.fs.ps.put.finansominator.security.session.SessionManager;
 import com.google.gson.Gson;
 
+import java.security.Key;
+import java.security.KeyFactory;
+import java.security.SecureRandom;
+import java.security.spec.RSAPublicKeySpec;
 import java.util.HashMap;
 import java.util.Map;
+
+import javax.crypto.SecretKey;
+import javax.crypto.spec.IvParameterSpec;
+import javax.crypto.spec.SecretKeySpec;
 
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
     private static final String NO_CONNECTION = "No Internet connection!";
+    private static final String API_URL_GET_KEY = "http://192.168.0.1:8080/publicKey/get";
     private static final String API_URL_SALT = "http://192.168.0.1:8080/logon/salt";
+
     private static final String API_URL_VERIFY = "http://192.168.0.1:8080/logon/verify";
+    private static final String CHARSET = "UTF-8";
 
 
     EditText usernameText;
@@ -48,6 +60,8 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = (EditText) findViewById(R.id.input_password);
         usernameText = (EditText) findViewById(R.id.input_username);
         sessionManager = new SessionManager();
+        GetRsaPublicKey getRsaPublicKey = new GetRsaPublicKey(this);
+        getRsaPublicKey.execute();
 
 
         loginButton.setOnClickListener(new View.OnClickListener() {
@@ -156,6 +170,8 @@ public class LoginActivity extends AppCompatActivity {
         private Gson gson;
         private byte[] salt;
         ProgressDialog progressDialog;
+        SecretKey AESkey;
+        IvParameterSpec iv;
 
         public Context context;
 
@@ -165,6 +181,9 @@ public class LoginActivity extends AppCompatActivity {
             context = con;
             gson = new Gson();
             this.progressDialog = progressDialog;
+            AESkey = CryptoUtils.generateAESKey();
+            iv = new IvParameterSpec(SecureRandom.getSeed(16));
+
 
         }
 
@@ -192,33 +211,39 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.dismiss();
             if (response == null) {
                 Toast.makeText(context, NO_CONNECTION, Toast.LENGTH_LONG).show();
+                loginButton.setEnabled(true);
             } else {
                 Log.i("INFO", response);
-                if (response.equals("true")){
+                String decryptedResponse = CryptoUtils.decryptStringParameter(response,AESkey,iv);
+                if (decryptedResponse.equals("true")) {
+                    sessionManager.saveSessionKey(context);
+                    sessionManager.saveUsername(context,username);
                     onLoginSuccess();
-                }
-                else
+                } else
                     onLoginFailed();
             }
 
 
-            }
+        }
 
-            private byte[] getSalt () throws Exception {
-                String saltText = getSaltRequest();
-                byte[] salt = new byte[0];
-                if (!saltText.equals("[]")) {
-                    salt = gson.fromJson(saltText, byte[].class);
-                }
-                return salt;
+        private byte[] getSalt() throws Exception {
+            String saltText = getSaltRequest();
+            byte[] salt = new byte[0];
+            if (!saltText.equals("[]")) {
+                salt = CryptoUtils.decryptByteArrayParameter(saltText,AESkey,iv);
             }
+            return salt;
+        }
 
         private String getSaltRequest() throws Exception {
             String salt;
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("username", username);
+            parameters.put("username", CryptoUtils.encryptParameter(username, AESkey, iv));
+            parameters.put("cipherKey", CryptoUtils.encryptKey(AESkey));
+            parameters.put("iv", CryptoUtils.encryptIv(iv));
             salt = ServerCommunicator.sendAndWaitForResponse(API_URL_SALT, parameters);
             return salt;
+
         }
 
         private void prepareSessionKey() {
@@ -234,14 +259,67 @@ public class LoginActivity extends AppCompatActivity {
 
             String response = "";
             Map<String, Object> parameters = new HashMap<>();
-            parameters.put("username", username);
-            parameters.put("sessionKey", gson.toJson(sessionKey));
+            parameters.put("username", CryptoUtils.encryptParameter(username, AESkey, iv));
+            parameters.put("sessionKey", CryptoUtils.encryptParameter(sessionKey, AESkey, iv));
+            parameters.put("cipherKey", CryptoUtils.encryptKey(AESkey));
+            parameters.put("iv", CryptoUtils.encryptIv(iv));
             response = ServerCommunicator.sendAndWaitForResponse(API_URL_VERIFY, parameters);
-            
+
 
             return response;
 
         }
     }
+
+
+    class GetRsaPublicKey extends AsyncTask<Void, Void, String> {
+
+        private Gson gson;
+
+
+        public Context context;
+
+        public GetRsaPublicKey(Context context) {
+
+            gson = new Gson();
+            this.context = context;
+        }
+
+        protected void onPreExecute() {
+        }
+
+        protected String doInBackground(Void... urls) {
+            try {
+                return getKey();
+            } catch (Exception e) {
+                Log.e("ERROR", e.getMessage(), e);
+                return null;
+            }
+        }
+
+        protected void onPostExecute(String response) {
+
+            if (response == null) {
+                Toast.makeText(context, "Cannot connect to the server!", Toast.LENGTH_LONG).show();
+            } else {
+                Log.i("INFO", response);
+                try {
+                    KeyFactory fact = KeyFactory.getInstance("RSA");
+                    CryptoUtils.publicKey = fact.generatePublic(gson.fromJson(response, RSAPublicKeySpec.class));
+
+                } catch (Exception e) {
+                }
+            }
+        }
+
+        private String getKey() throws Exception {
+            String key;
+            Map<String, Object> parameters = new HashMap<>();
+            key = ServerCommunicator.sendAndWaitForResponse(API_URL_GET_KEY, parameters);
+            return key;
+        }
+
+    }
+
 
 }

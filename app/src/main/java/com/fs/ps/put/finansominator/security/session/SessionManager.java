@@ -1,7 +1,11 @@
 package com.fs.ps.put.finansominator.security.session;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.util.Base64;
 import android.util.Log;
 
+import com.fs.ps.put.finansominator.communication.ParameterNames;
 import com.fs.ps.put.finansominator.model.User;
 
 import java.io.UnsupportedEncodingException;
@@ -16,6 +20,9 @@ public class SessionManager {
     MessageDigest messageDigest;
     User userData;
     byte[] sessionKey;
+    static final String PREFS_NAME="SESSION_KEY_PREFS";
+    static final String SESSION_KEY = "SK";
+
 
     public SessionManager(){
         try {
@@ -56,6 +63,34 @@ public class SessionManager {
 
     public void setUserData(User userData) {
         this.userData = userData;
+    }
+
+    public void saveSessionKey(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String sessionKey = Base64.encodeToString(getSessionKey(), Base64.NO_WRAP);
+        editor.putString(SESSION_KEY,sessionKey);
+        editor.apply();
+    }
+
+    public static byte[] loadSessionKey(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, 0);
+        String base64SessionKey = sharedPreferences.getString(SESSION_KEY,"");
+        return Base64.decode(base64SessionKey,Base64.NO_WRAP);
+
+
+    }
+
+    public void saveUsername(Context context,String username){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(ParameterNames.USERNAME,username);
+        editor.apply();
+    }
+
+    public static String loadUsername(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(PREFS_NAME, 0);
+        return sharedPreferences.getString(ParameterNames.USERNAME,"");
     }
 
 

@@ -8,6 +8,7 @@ public class User {
     private String email;
     private byte[] password;
     private List<Budget> ownedBudgets;
+    private byte[] salt;
 
     public User() {
     }
@@ -58,4 +59,11 @@ public class User {
         this.ownedBudgets = ownedBudgets;
     }
 
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public byte[] getSalt() {
+        return salt;
+    }
 }
