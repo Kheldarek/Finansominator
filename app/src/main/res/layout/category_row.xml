@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
+                android:background="#8c9eff"
                 android:layout_height="match_parent">
 
     <TextView
@@ -24,7 +25,7 @@
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:background="@android:color/background_light"
+        android:background="#8c9eff"
         android:layout_centerVertical="true"
         android:id="@+id/delCategoryBtn"
         android:text="@string/fa_icon_trash"

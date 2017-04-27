@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/activity_stats"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="#8c9eff"
+                android:paddingBottom="@dimen/activity_vertical_margin"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:paddingRight="@dimen/activity_horizontal_margin"
+                android:paddingTop="@dimen/activity_vertical_margin"
+
+                tools:context="com.fs.ps.put.finansominator.activities.UserActivity">
+
+    <TextView
+        android:id="@+id/userLoginLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:text="Current login: "
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/userNewLoginTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userLoginLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Change this to set new login"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/userEmailLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userNewLoginTxt"
+        android:layout_centerHorizontal="true"
+        android:text="Current email: "
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/userEmailEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userEmailLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
+        android:hint="Change this to change email"
+        android:inputType="textEmailAddress"
+        android:textSize="20sp"
+        />
+
+    <TextView
+        android:id="@+id/userChangePasswordLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userEmailEditText"
+        android:layout_centerHorizontal="true"
+        android:text="Change password:"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/userOldPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userChangePasswordLabel"
+        android:layout_centerHorizontal="true"
+        android:hint="Old password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        />
+
+    <EditText
+        android:id="@+id/userNewPasswordEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userOldPasswordEditText"
+        android:layout_centerHorizontal="true"
+        android:hint="New password"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        />
+
+    <Button
+        android:id="@+id/userSendBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/userNewPasswordEditText"
+        android:layout_marginTop="20dp"
+        android:text="Update user info"
+        />
+
+
+</RelativeLayout>

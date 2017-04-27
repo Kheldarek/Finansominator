@@ -57,13 +57,4 @@ public class ServerCommunicator {
 
     }
 
-    public Map<String,Object> encryptParameters(Map<String, Object> parameters){
-
-        for(Map.Entry<String,Object> param:parameters.entrySet()){
-
-        }
-        return parameters;
-
-    }
-
 }

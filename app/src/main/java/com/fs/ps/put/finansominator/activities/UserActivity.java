@@ -40,7 +40,7 @@ public class UserActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_stats);
+        setContentView(R.layout.activity_user);
         newLogin = (EditText) findViewById(R.id.userNewLoginTxt);
         newMail = (EditText) findViewById(R.id.userEmailEditText);
         oldPassword = (EditText) findViewById(R.id.userOldPasswordEditText);
